@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>exercice 1</title>
+    <script src="bower_components/jquery/dist/jquery.min.js" type="text/javascript"></script>
+    <style>
+      .resultat{
+        height: 40px;
+        overflow: hidden;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="pourcent"></div>
+    <div class="score"></div>
+    <select class="shifumi" name="shifumi">
+      <option value="1">Pierre</option>
+      <option value="2">Feuille</option>
+      <option value="3">Ciseaux</option>
+    </select>
+    <button id="shifumi">ShiFuMi</button>
+    <div class="choixOrdi"></div>
+    <div class="resultat"></div>
+  <script>
+  $(document).ready(function(){
+  //feuille
+  //pierre
+  //ciseaux
+
+  var choix1;
+  var choix2;
+  var choixOrdi;
+  var victoire = 0;
+  var defaite = 0;
+  var egale = 0;
+  var pourcent = 0;
+  var partie = 0;
+
+  function pourcentage(){
+    var pourcent = ((victoire * 100)/ partie);
+    $('.pourcent').html(pourcent.toFixed(2)+'%');
+  }
+  //joueur1 choisit parmis les 3 choix qui sont dans un menu déroulant
+  $('#shifumi').click(function(){ //Quand on clicque sur "Shifumi"
+    choix1 = $(".shifumi option:selected").val(); //récupére la réponse du joueur
+    choixOrdi = Math.floor((Math.random() * 3)+1); //Ordi choisit un élément au hasard
+    comparaison();
+    partie++;
+    $('.score').html('<p>Victoire : '+victoire+' Egalité : '+ egale+' Défaite : '+ defaite);
+    pourcentage();
+
+    if ( choixOrdi == 3 ){
+      $('.choixOrdi').html('<p>Ciseaux</p>');
+    } else if (choixOrdi == 2){
+      $('.choixOrdi').html('<p>Feuille</p>');
+    } else {
+      $('.choixOrdi').html('<p>Pierre</p>');
+    }
+  });
+
+function comparaison(){
+  if( (choix1 == 2 && choixOrdi == 1) || (choix1 == 1 && choix == 3) || (choix1 == 3 && choixOrdi == 2)){
+  $('.resultat').html('<p>GAGNER</p>');// feuille gagne
+  victoire++;
+}else if((choix1 == 2 && choixOrdi == 3)||(choix1 == 1 && choixOrdi == 2) || (choix1 == 3 && choixOrdi == 1 )){
+  $('.resultat').html('<p>PERDU</p>');// feuille perds
+  defaite++;
+  } else {
+    $('.resultat').html('<p>Egalité</p>');// egalité
+    egale++;
+    }
+  }
+
+});
+  </script>
+  </body>
+</html>

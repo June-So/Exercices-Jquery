@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Exercice5</title>
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <style>
+    #carre {
+      position: relative;
+      width: 50px;
+      height: 50px;
+      margin:0;
+      left: 0;
+      top: 0;
+      background-color: orange;
+    }
+    </style>
+  </head>
+  <body>
+    <p>Cliquez sur le champ de texte et appuyer sur les flèches directionnelles pour faire bouger le bloc.</p>
+    <form>
+      <div id="carre"></div>
+      <input type="texte"/>
+    </form>
+    <script>
+      $(document).ready(function(){
+        var carre = $('#carre');
+        var maxX = $(window).width() - carre.width();
+        var maxY = $(window).height() - carre.height();
+
+      $('input').keydown(function(event){
+
+      if (event.which == 39){ // Quand on appuie sur la touche arrow ->
+          if ( carre.position().left >= maxX){ //Si le carré sort de la page à droite :
+            carre.css('left','0'); // Réapparait au début;
+          } else {
+            carre.css('left', '+=10'); //ajoute +10 de pos.X++ de sa position actuelle
+          }
+
+    }  else if(event.which == 37){ //Quand on appuie sur la touche arrow <- :
+      if ( carre.position().left <= 0 ){ //Si le carré sort de la page à gauche :
+        carre.css('left',maxX); // Réapparait au début;
+      } else {
+        carre.css('left', '-=10'); //deplace le carré de pos.X--
+      }
+
+    } else if (event.which == 40){ //Quand on appuie sur une touche arrow v:
+      if ( carre.position().top >= maxY ){ //Si le carré sort de la page en bas :
+        carre.css('top','0'); // Réapparait au début;
+      } else {
+        carre.css('top','+=10'); //deplace le carré de pos.Y++
+      }
+
+    }  else if (event.which == 38){ //Quand on appuie sur une touche arrow ^
+      if ( carre.position().top <= 0 ){ //Si le carré sort de la page en haut :
+        carre.css('top',maxY); // Réapparait au début;
+      } else {
+        carre.css('top','-=10'); //deplace le carré de pos.Y--
+      }
+    }
+    });
+
+      });
+
+    </script>
+  </body>
+</html>

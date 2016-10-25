@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>exercice 3</title>
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+  </head>
+  <body>
+    <h1> Mini Juste Prix</h1>
+    <p>Devinez le nombre choisit par l'ordinanteur</p>
+    <input type="number"/>
+    <button id="bouton">Envoyer ma réponse</button>
+    <p class="retourne"> </p>
+
+    <script>
+    $(document).ready(function(){
+      //l'ordinateur décide d'un chiffre aléatoire
+      var choixOrdi = parseInt(Math.random() * (0 - 100)+100);
+      var essai = 0;
+      // l'Utilisateur tente un chiffre
+      $('#bouton').click(function(){
+        console.log(choixOrdi);
+        essai++;
+        // Recupére le texte de l'input
+        $reponse = $('input').val();
+        // Compare le chiffre
+        // Affiche les indications
+        if ( $reponse > choixOrdi){
+          $('.retourne').append('<p>('+$reponse+')C\'est moins</p>');
+
+        } else if ( $reponse < choixOrdi){
+          $('.retourne').append('<p>('+$reponse+')C\'est plus</p>');
+        } else {
+          $('.retourne').append('<p>('+$reponse+')Bravo vous avez trouvez en '+ essai+' essais</p>');
+        }
+
+      });
+    });
+
+    </script>
+  </body>
+</html>

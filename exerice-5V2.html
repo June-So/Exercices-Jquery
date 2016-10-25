@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Exercice2-P4</title>
+  <script src="bower_components/jquery/dist/jquery.min.js" type="text/javascript"></script>
+  <script src="cImpot.js" type="text/javascript">
+
+  </script>
+</head>
+<body>
+  <form>
+    <label for="salaire">Votre Salaire:</label>
+    <input id="salaire" type="number" name="salaire" value=""/>
+    <select>
+      <option>Homme</option>
+      <option>Femme</option>
+    </select>
+    <label for="enfants">Nombre d'enfants:</label>
+    <input id="enfants" type="number" name="enfant" value=""/>
+    <button id="calcul">calculé</button>
+  </form>
+  <ul>
+    <li>Charges 18% : <span id="charge">0</span></li>
+    <li>Charges 7% : <span id="assurance">0</span></li>
+    <li>Charges 5% :<span id="cotisations">0</span></li>
+    <li class="retrait">Retrait : <span id="retrait">0</soan></li>
+    </ul>
+
+    <script>
+    /*function pourcentages(combien,dequoi){
+    return parseInt(combien * dequoi / 100);
+  };*/
+
+  $(document).ready(function(){
+    $('#calcul').click(function(){
+      var taxe = new impot;
+      taxe.salaire = $('#salaire').val();//Récupérer le Salaire : 100%
+      taxe.genre = $('select option:selected').text();
+      taxe.enfants = $('#enfants').val();
+      taxe.reduction = 0;
+      taxe.pourcentagesCharges();//Cotisations: 5%
+      taxe.reductionTaxe();
+      taxe.salaireRestant();
+
+      $('#charge').html(taxe.charges);
+      $('#assurance').html(taxe.assurance);
+      $('#cotisations').html(taxe.cotisations);
+
+      $('#retrait').html((taxe.retrait -taxe.reduction)+ ' il vous reste : ' + taxe.reste +'€')//Total retrait
+      $('.retrait').prepend('<li>Vous avez obtenu '+taxe.reduction+' € de reduction</li>');
+    });
+  });
+  </script>
+</body>
+</html>

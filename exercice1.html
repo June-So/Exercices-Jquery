@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>exercice 1</title>
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+  </head>
+  <body>
+<button id="compteur">0</button>
+<script>
+$(document).ready(function(){
+  var compteur = 0;
+
+  $('#compteur').click(function(){
+    compteur++;
+    $('#compteur').html(compteur + '');
+  })
+});
+</script>
+  </body>
+</html>

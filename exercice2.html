@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>exercice2</title>
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+  </head>
+  <body>
+    <button id="moins">-</button>
+    <p id="compteur">0</p>
+    <button id="plus">+</button>
+    <script>
+      $(document).ready(function(){
+        var compteur = 0;
+        function updateCompteur(){
+          $('#compteur').html(compteur);
+        }
+        $('#moins').click(function(){
+          compteur--;
+          updateCompteur();
+        });
+        $('#plus').click(function(){
+          compteur++;
+          updateCompteur();
+        });
+
+      });
+    </script>
+  </body>
+</html>
